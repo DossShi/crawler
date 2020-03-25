@@ -23,7 +23,8 @@ def save(html, path):
         print('保存失败', e)
 
 
-url = '要爬的网址'
+parent_url = '分页下载地址'
+url = '下载地址'
 # 浏览器请求头
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
@@ -57,7 +58,7 @@ for r in result:
         # with open(name, mode="wb") as f:
         #     f.write(response_image.content)
         save(response_image.content, path + name)
-        break
+        # break
 
 # 提取图片的下载地址
 # title = re.findall('<span id="subject_tpc">(.*?)</span>', response.text)
