@@ -30,10 +30,10 @@ minioClient = Minio('47.101.168.84:9000',
 
 
 # Put an object 'test1.jpg' with contents from '32412191465.jpg'.
-# try:
-#        minioClient.fput_object('test', '2.txt'.encode('utf-8'), '/tmp/2.txt')
-# except ResponseError as err:
-#        print(err)
+try:
+       minioClient.fput_object('test', 'testdir/dirSon/2.txt'.encode('utf-8'), '/tmp/app.log')
+except ResponseError as err:
+       print(err)
 
 
 # List all object paths in bucket that begin with my-prefixname.
