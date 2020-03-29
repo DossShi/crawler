@@ -12,30 +12,34 @@ minioClient = Minio('47.101.168.84:9000',
                     secure=False)
 
 
+# 创建bucket
 # Make a bucket with the make_bucket API call.
-# try:
-#        minioClient.make_bucket("test2")
-# except BucketAlreadyOwnedByYou as err:
-#        pass
-# except BucketAlreadyExists as err:
-#        pass
-# except ResponseError as err:
-#        raise
+try:
+       minioClient.make_bucket("resource")
+except BucketAlreadyOwnedByYou as err:
+       pass
+except BucketAlreadyExists as err:
+       pass
+except ResponseError as err:
+       raise
 
 
+# 显示所有bucket
 # List all buckets
 # buckets = minioClient.list_buckets()
 # for bucket in buckets:
 #     print(bucket.name, '\t', bucket.creation_date)
 
 
+# 上传文件
 # Put an object 'test1.jpg' with contents from '32412191465.jpg'.
-# try:
-#        minioClient.fput_object('test', 'testdir/dirSon/2.txt'.encode('utf-8'), '/tmp/app.log')
-# except ResponseError as err:
-#        print(err)
+try:
+       minioClient.fput_object('resource', "image/15/1/['就说男人都喜欢丝袜更喜欢撕，这样会不会让你变成禽兽呢[25P]']/32909166806.jpg".encode('utf-8'), "/image/15/1/['就说男人都喜欢丝袜更喜欢撕，这样会不会让你变成禽兽呢[25P]']/32909166806.jpg")
+except ResponseError as err:
+       print(err)
 
 
+# 找出bucket中左右文件
 # List all object paths in bucket that begin with my-prefixname.
 # objects = minioClient.list_objects('test', prefix='',
 #                               recursive=True)
@@ -44,6 +48,7 @@ minioClient = Minio('47.101.168.84:9000',
 #           obj.etag, obj.size, obj.content_type)
 
 
+# 找出bucket中左右文件
 # List all object paths in bucket that begin with my-prefixname using
 # V2 listing API.
 # objects = minioClient.list_objects_v2('test', prefix='',
@@ -53,6 +58,7 @@ minioClient = Minio('47.101.168.84:9000',
 #           obj.etag, obj.size, obj.content_type)
 
 
+# 移除bucket
 # Remove a bucket
 # This operation will only work if your bucket is empty.
 # try:
@@ -61,6 +67,7 @@ minioClient = Minio('47.101.168.84:9000',
 #     print(err)
 
 
+# 列出bucket中所有my-prefixname开头的路径
 # List all object paths in bucket that begin with my-prefixname.
 # uploads = minioClient.list_incomplete_uploads('test',
 #                                          prefix='图片',
@@ -69,6 +76,7 @@ minioClient = Minio('47.101.168.84:9000',
 #     print(obj.bucket_name, obj.object_name, obj.upload_id, obj.size)
 
 
+# 获取文件
 # Get a full object
 # try:
 #     minioClient.fget_object('test', '图片.jpg', '/tmp/1.jpg')
@@ -119,11 +127,11 @@ minioClient = Minio('47.101.168.84:9000',
 
 
 # presigned Put object URL for an object name, expires in 3 days.
-try:
-    print(minioClient.presigned_put_object('test',
-                                      '2.txt',
-                                      datetime.timedelta(days=3)))
-# Response error is still possible since internally presigned does get
-# bucket location.
-except ResponseError as err:
-    print(err)
+# try:
+#     print(minioClient.presigned_put_object('test',
+#                                       '2.txt',
+#                                       datetime.timedelta(days=3)))
+# # Response error is still possible since internally presigned does get
+# # bucket location.
+# except ResponseError as err:
+#     print(err)
